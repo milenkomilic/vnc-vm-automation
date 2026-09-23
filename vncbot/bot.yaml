@@ -1,0 +1,40 @@
+# Bot "objetivo cyan con barra de confirmación" expresado como datos.
+# Equivale a vnc_bot.py. Coordenadas = VM; cajas con bordes incluidos: [x1, y1, x2, y2].
+
+conexion:
+  server: "localhost::5900"
+  password: "123456"
+
+ritmo:            # pausa aleatoria entre ciclos (s)
+  min: 1.8
+  max: 3.6
+
+watchdog: 300     # avisa si pasan 300 s sin ninguna acción (null = desactivado)
+
+senales:
+  accion_en_curso:          # barra verde: hay acción en progreso
+    tipo: presencia
+    caja: [18, 101, 218, 124]
+    color: [6, 138, 53]
+    tolerancia: 5
+    min_pixeles: 1
+
+  objetivo:                 # objeto cyan sobre el que se hace clic
+    tipo: objetivo
+    caja: [6, 36, 1238, 801]
+    color: [0, 255, 255]
+    tolerancia: 5
+    min_pixeles: 15
+
+reglas:                     # prioridad = orden; se ejecuta la primera que aplica
+  - nombre: accion_en_curso
+    si: [accion_en_curso]
+    hacer: esperar
+
+  - nombre: clic_objetivo
+    si: [objetivo]
+    hacer: {clic: objetivo}
+    confirmar: {senal: accion_en_curso, gracia: 3.0}
+
+  - nombre: cooldown
+    hacer: esperar

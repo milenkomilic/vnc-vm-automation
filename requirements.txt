@@ -1,0 +1,6 @@
+vncdotool>=1.2
+numpy
+pillow
+pyyaml
+# opcional: señales por plantilla (tipo "plantilla")
+# opencv-python
