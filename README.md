@@ -1,5 +1,3 @@
-Automatización de VMs sin instalar nada en ellas: el host controla la VM por VNC (vncdotool) con visión por imagen, teclado y mouse
-
 # Metodología de Automatizaciones por VNC
 
 **Percibir → Decidir → Actuar → Verificar**
